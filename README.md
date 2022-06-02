@@ -3,7 +3,8 @@
 
 #### 基于 Electron13.0+vue3.0+element-plus2.0+vue-router4.0
 
-
+#### Xcode11 IPA上传工具（替代Application loader、Transporter））
+https://www.jianshu.com/p/faa29cb093a4
 
 ### 使用
 
