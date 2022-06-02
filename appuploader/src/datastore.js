@@ -1,14 +1,12 @@
 // http://www.siwei.me/blog/posts/electron-electron-vue-sqlite3-sqlite-db-run-exec
 import path from 'path';
-import { remote } from 'electron';
-
 const sqlite = require("better-sqlite3");
 const os = require("os");
+var fs = require('fs');
 
-const fpath = path.join(os.homedir(), '/.private_keys/database.db')
+const fpath = path.join(os.homedir(), '/.private_keys2/database.db')
+initDatabaseAction(fpath)
 const db = new sqlite(fpath, { fileMustExist: true });
-// const db = new sqlite(path.resolve(__dirname, 'cicd.db'), {fileMustExist: true});
-
 const create_table_history=
     `CREATE TABLE IF NOT EXISTS HistoryInfoTable(
       id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -20,6 +18,23 @@ const create_table_history=
       info	TEXT
     );`
 db.exec(create_table_history)//执行sql命令
+
+
+
+//创建private_keys目录和数据库文件
+function initDatabaseAction(file){
+  var dir= path.dirname(file)
+  if (!fs.existsSync(dir)){
+       console.log(`creating ${dir}`);
+      fs.mkdirSync(dir, { recursive: true });
+  }
+  
+  if (!fs.existsSync(file)){
+      console.log("creating database file");
+      fs.openSync(file, "w");
+  }
+}
+
 
 //query查询记录：
 const query = (sql) => {
@@ -85,7 +100,6 @@ function currentFormatDate() {
 }
 
 
-
 const dbConfig = {
     query,
     queryAll,
@@ -95,10 +109,6 @@ const dbConfig = {
     UUID,
     currentFormatDate
 }
-
-
-
-
 
 export default dbConfig
 

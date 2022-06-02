@@ -123,6 +123,12 @@ function run_CmdSilent(cmd,callback) {
   });
 };
 
+function exec_CMD(cmd) {
+  var exec = require('child_process').execSync;
+  var str = exec(cmd);
+  return str.toString("utf8").trim();
+}
+
 function run_child_process(cmd,callback) {
   var exec = require('child_process').exec;
   exec(cmd, function(err, stdout, stderr) {
@@ -281,7 +287,8 @@ function handleIPAAction(ipaPath) {
     console.error(err)
   }
 
-var python = require('child_process').spawn('/usr/local/bin/python3',
+let python3_path=exec_CMD("which python3")||"/usr/local/bin/python3"
+var python = require('child_process').spawn(python3_path,
   [pySPath, ipaPath]);
 var outStr = ""
 python.stdout.on('data', function(data) {

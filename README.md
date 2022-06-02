@@ -79,3 +79,33 @@ $ npm install
 $ npm run electron:serve
 ```
 
+
+
+## Mac 上安装python3
+
+上传工具依赖Python3环境开发，已安装请忽略
+
+安装教程：https://pythonguidecn.readthedocs.io/zh/latest/starting/install3/osx.html
+
+```sh
+查看当前Python版本
+$ python --version
+查看Python路径
+$ which python
+查看全部Python路径
+$ echo $PATH
+查看Python3路径
+$ which python3
+
+查看pip2版本
+$ pip2 --version
+查看pip3版本
+$ pip3 --version
+
+查看python版本
+$ python --version
+Python 3.5.1
+查看Python3版本
+$ python3 --version
+```
+
