@@ -51,7 +51,7 @@ export default {
       //表头 
       columnList: [
         { prop: "AuthKey", label: 'API密钥',width: 200 },
-        { prop: "Issuer_ID", label: '密钥ID',width: 300},
+        { prop: "Issuer_ID", label: 'Issuer ID',width: 300},
         { prop: "CFBundleDisplayName", label: 'App名称',width:100},
         { prop: "CFBundleIdentifier", label: 'BundleID',width: 150},
         { prop: "info", label: '备注信息' }

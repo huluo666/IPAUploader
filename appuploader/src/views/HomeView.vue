@@ -20,7 +20,7 @@
             </el-input>
           </el-form-item>
 
-          <el-form-item size="large" label="密钥ID:" class="formlabel">
+          <el-form-item size="large" label="Issuer ID:" class="formlabel">
             <el-input v-model="Issuer_ID" placeholder="请输入issuser id" />
           </el-form-item>
         </el-form>

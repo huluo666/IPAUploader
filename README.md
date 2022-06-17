@@ -18,7 +18,7 @@ npm install
 #### 2、启动测试server
 
 ```sh
-npm run electron:serves
+npm run electron:serve
 ```
 
 #### 3、打包应用

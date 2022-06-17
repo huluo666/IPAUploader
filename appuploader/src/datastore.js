@@ -4,7 +4,7 @@ const sqlite = require("better-sqlite3");
 const os = require("os");
 var fs = require('fs');
 
-const fpath = path.join(os.homedir(), '/.private_keys2/database.db')
+const fpath = path.join(os.homedir(), '/.private_keys/database.db')
 initDatabaseAction(fpath)
 const db = new sqlite(fpath, { fileMustExist: true });
 const create_table_history=
@@ -25,8 +25,22 @@ db.exec(create_table_history)//执行sql命令
 function initDatabaseAction(file){
   var dir= path.dirname(file)
   if (!fs.existsSync(dir)){
-       console.log(`creating ${dir}`);
-      fs.mkdirSync(dir, { recursive: true });
+      console.log(`creating ${dir}`);
+      try {
+        fs.mkdirSync(dir, { recursive: true });
+      }catch (e) {
+        if (e.code == 'EACCES') {
+            console.log('Cannot create directory private_keys')
+        }else {
+            console.log(e.code)
+        }
+      }
+  }else{
+    try {
+      fs.accessSync(dir, fs.constants.W_OK)
+    } catch (e) {
+      console.error('Cannot access directory private_keys')
+    }
   }
   
   if (!fs.existsSync(file)){
